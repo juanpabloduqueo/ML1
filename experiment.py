@@ -12,10 +12,10 @@ models = {
     "google_net" : get_google_net_model
 }
 
-def main(config, model):
+def main(config, name_model):
     with open(config) as json_file:  
         conf = json.load(json_file)
-        conf = conf[model]
+        conf = conf[name_model]
 
     #Load metadata
     metadata = pd.read_csv(conf['metadata'])
@@ -40,7 +40,7 @@ def main(config, model):
         num_parallel_calls=2, pixels=conf['image_size'], target=conf['target'])
 
     #Load model
-    model = models[model](conf['num_class'])
+    model = models[name_model](conf['num_class'])
     model.compile(loss=[tf.losses.SparseCategoricalCrossentropy()]*conf['target'],
             optimizer=tf.optimizers.Adam(conf['learning_rate']),
             metrics=['accuracy'])
@@ -51,8 +51,8 @@ def main(config, model):
         validation_data=valid_dataset, validation_steps=conf['validation_steps'])
     
     #Save learning curve
-    draw_result(history_one, conf['epochs_one'], conf['model'] + "_one_" + str(datetime.date.today()))
-    draw_result(history, conf['epochs'], conf['model'] + "_" + str(datetime.date.today()), True)
+    draw_result(history_one, conf['epochs_one'], name_model + "_one_" + str(datetime.date.today()))
+    draw_result(history, conf['epochs'], name_model + "_" + str(datetime.date.today()), True)
     
 
 if __name__ == '__main__':

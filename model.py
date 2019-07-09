@@ -6,7 +6,7 @@ def get_lineal_model(num_class):
     model.add(tf.keras.layers.Dense(num_class, activation='softmax'))
     return model
 
-def get_letnet_model(num_class):
+def get_lenet_model(num_class):
     model = tf.keras.Sequential()
     model.add(
         tf.keras.layers.Conv2D(

@@ -11,7 +11,7 @@
         "metadata": "metadata.csv",
         "metadata1": "metadata1.csv"
     },
-    "letnet": {
+    "lenet": {
         "batch_size": 10,
         "image_size": 224,
         "learning_rate": 0.004,

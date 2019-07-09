@@ -6,7 +6,7 @@ from data import *
 
 models = {
     "lineal" : get_lineal_model,
-    "letnet" : get_letnet_model,
+    "lenet" : get_lenet_model,
     "alexnet" : get_alexnet_model,
     "vgg16" : get_vgg16_model,
     "google_net" : get_google_net_model

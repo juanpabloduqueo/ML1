@@ -48,7 +48,7 @@ def main(config, name_model):
     #Fit model
     history_one = model.fit(x=train_one_dataset, epochs=conf['epochs_one'])
     history = model.fit(x=train_dataset, epochs=conf['epochs'],
-        validation_data=valid_dataset, validation_steps=conf['validation_steps'])
+        validation_data=valid_dataset,validation_steps=conf['validation_steps'])
     
     #Save learning curve
     draw_result(history_one, conf['epochs_one'], name_model + "_one_" + str(datetime.date.today()))

@@ -36,10 +36,10 @@
         "metadata1": "metadata1.csv"
     },
     "vgg16":{
-        "batch_size": 32,
+        "batch_size": 16,
         "image_size": 224,
         "learning_rate": 0.0001,
-        "validation_steps": 2,
+        "validation_steps": 1,
         "num_class": 5,
         "target": 1,
         "epochs_one": 10,

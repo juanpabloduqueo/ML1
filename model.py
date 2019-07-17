@@ -16,11 +16,11 @@ def get_lenet_model(num_class):
         )
     )
     model.add(tf.keras.layers.AveragePooling2D(pool_size=(2,2)))
-    model.add(tf.keras.layers.Conv2D(16, (5,5), activation='tanh'))
+    model.add(tf.keras.layers.Conv2D(2, (5,5), activation='tanh'))
     model.add(tf.keras.layers.AveragePooling2D((2,2)))
-    model.add(tf.keras.layers.Conv2D(120, (5,5), activation='tanh'))
+    model.add(tf.keras.layers.Conv2D(3, (5,5), activation='tanh'))
     model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(84, activation='tanh'))
+    model.add(tf.keras.layers.Dense(5, activation='tanh'))
     model.add(tf.keras.layers.Dense(num_class, activation='softmax'))
     return model
 

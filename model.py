@@ -74,7 +74,7 @@ def get_vgg16_model(num_class):
     model.add(
         tf.keras.layers.Conv2D(
             filters=64, kernel_size=(3,3), activation='relu',
-            padding='same', input_shape=(224, 224, 3)
+            padding='same', input_shape=(64, 64, 3)
         )
     )
     model.add(
@@ -154,7 +154,7 @@ def get_google_net_model(num_class):
     x1 = tf.keras.layers.Conv2D(128, (1, 1), padding='same', activation='relu')(x1)
     x1 = tf.keras.layers.Flatten()(x1)
     x1 = tf.keras.layers.Dense(1024, activation='relu')(x1)
-    x1 = tf.keras.layers.Dropout(0.7)(x1)
+    x1 = tf.keras.layers.Dropout(0.5)(x1)
     x1 = tf.keras.layers.Dense(num_class, activation='softmax', name='auxilliary_output_1')(x1)
 
     x = inception_module(x, 160, 112, 224, 24, 64, 64)
@@ -165,7 +165,7 @@ def get_google_net_model(num_class):
     x2 = tf.keras.layers.Conv2D(128, (1, 1), padding='same', activation='relu')(x2)
     x2 = tf.keras.layers.Flatten()(x2)
     x2 = tf.keras.layers.Dense(1024, activation='relu')(x2)
-    x2 = tf.keras.layers.Dropout(0.7)(x2)
+    x2 = tf.keras.layers.Dropout(0.5)(x2)
     x2 = tf.keras.layers.Dense(num_class, activation='softmax', name='auxilliary_output_2')(x2)
 
     x = inception_module(x, 256, 160, 320, 32, 128, 128)

@@ -41,8 +41,8 @@ def main(config, name_model):
 
     #Load model
     model = models[name_model](conf['num_class'])
-    model.compile(loss=[tf.losses.SparseCategoricalCrossentropy()]*conf['target'],
-            optimizer=tf.optimizers.Adam(conf['learning_rate']),
+    model.compile(loss=[tf.keras.losses.SparseCategoricalCrossentropy()]*conf['target'],
+            optimizer=tf.keras.optimizers.Adam(conf['learning_rate']),
             metrics=['accuracy'])
 
     #Fit model

@@ -56,6 +56,7 @@ def split_dataset(ds_len):
     return split
 
 def crop_save_img(file_path, new_name, bndbox):
+    print(file_path)
     img = cv2.imread(file_path)
     img2 = img[int(bndbox['ymin']):int(bndbox['ymax']), int(bndbox['xmin']):int(bndbox['xmax'])]
     cv2.imwrite(os.path.join('image_files', new_name), img2)
@@ -145,21 +146,22 @@ def imshow_batch_of_three(batch):
 def augment_image(image):
     return image
 
+
 def draw_result(H, N, name, val = False):
     fig, axs = plt.subplots(2)
     fig.suptitle('Training Loss and Accuracy on Dataset')
-    axs[0].plot(np.arange(0, N), H.history["loss"], label="train_loss")
-    if(val):
-        axs[0].plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
+    for key, _ in H.history.items():
+        if("loss" in key):
+            axs[0].plot(np.arange(0, N), H.history[key], label=key)
     axs[0].set_xlabel("Epoch #")
     axs[0].set_ylabel("Loss")
-    axs[0].legend(loc="lower left")
-    axs[1].plot(np.arange(0, N), H.history["accuracy"], label="train_acc")
-    if(val):
-        axs[1].plot(np.arange(0, N), H.history["val_accuracy"], label="val_acc")
+    axs[0].legend(loc="lower right")
+    for key, _ in H.history.items():
+        if("acc" in key):
+            axs[1].plot(np.arange(0, N), H.history[key], label=key)
     axs[1].set_xlabel("Epoch #")
     axs[1].set_ylabel("Accuracy")
-    axs[1].legend(loc="lower left")
+    axs[1].legend(loc="lower right")
     plt.savefig(name + ".png")
 
 if __name__ == '__main__':
